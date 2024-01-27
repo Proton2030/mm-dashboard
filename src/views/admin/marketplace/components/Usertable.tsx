@@ -32,41 +32,32 @@ function Usertable() {
   }, [setuserlist, page, limit]);
 
 
-  const handleDeleteClick = async({userObjectId}:any) => {
+  const handleDeleteClick = async ( userObjectId:any ) => {
     try {
-    //   const response=await axios.delete("http://localhost:8989/api/v1/user/delete-user",{
-    //     userObjectId:userObjectId
-      
-    // })
-    // .then((data)=>{
-    //   console.log(data)
-    // })
-    console.log(userObjectId)
+      await deleteUser(userObjectId);
+      getuserDetails();
     } catch (error) {
-      console.log(error)
+      console.error('Error deleting user', error);
     }
-    
-    
   };
+  
 
   const renderActionButtons = (params: ICellRendererParams) => {
-    const userId = params.data; // Use an identifier for the user, replace with actual identifier
-    // console.log(userId)
+    const userId = params.data._id; 
     return (
       <div className='flex items-center mt-1 '>
         <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800" >
           Edit
         </button>
-        <button className="bg-gray-800 px-2 rounded-md ml-2 text-white " onClick={()=>handleDeleteClick(userId)} >
+        <button className="bg-gray-800 px-2 rounded-md ml-2 text-white " onClick={() => handleDeleteClick(userId)} >
           Delete
         </button>
-        {/* Add other buttons as needed */}
       </div>
     );
   };
 
   const gridOptions = {
-    getRowHeight: () => 50, // Set the desired height (e.g., 50 pixels)
+    getRowHeight: () => 50,
   };
 
   const [colDefs, setColDefs] = useState([
