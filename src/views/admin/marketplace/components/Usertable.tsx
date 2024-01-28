@@ -74,7 +74,7 @@ function Usertable() {
         );
       }
     },
-    
+    {field: "message_limit", headerName:"Message Limit"},
     { field: "gender",headerName:"Gender" },
     { field: "updatedAt", headerName:"Last active time" },
     {
