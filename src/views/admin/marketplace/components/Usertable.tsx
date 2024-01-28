@@ -16,7 +16,7 @@ function Usertable() {
   const [filteredData, setfilteredData] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(500);
   
 
   const getuserDetails = useCallback(async () => {
@@ -24,7 +24,7 @@ function Usertable() {
       // const response = await axios.get(`http://65.1.183.77:8181/api/v1/user/get-all-user-suggestion?page=${page}&limit=${limit}`);
      const response= await getuserData({page,limit})
       setuserlist(response.data.result); // Extract data array from the response
-     
+      // setTotalPages(Math.ceil(response.data.total / limit));
       console.log(response.data.result);
     } catch (error) {
       console.log(error);
@@ -74,13 +74,17 @@ function Usertable() {
         );
       }
     },
-    
+    {field: "message_limit", headerName:"Message Limit"},
     { field: "gender",headerName:"Gender" },
     { field: "updatedAt", headerName:"Last active time" },
     {
       field: "Action",
       cellRenderer: renderActionButtons,
+    },
+    {
+      field:"message_limit", headerName:"Message limit"
     }
+
   ]);
 
   const defaultColDef: ColDef = useMemo(() => ({
@@ -173,9 +177,9 @@ function Usertable() {
       </div>
       <div className="pagination">
         <span>Page: {page} of {totalPages}</span>
-        <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>Previous</button>
-        <button onClick={() => handlePageChange(page + 1)} disabled={page === totalPages}>Next</button>
-        <select value={limit} onChange={(e) => handleLimitChange(Number(e.target.value))}>
+        <button className='bg-blue-500 cursor-pointer p-2 rounded-md ml-2 mt-2 text-white' onClick={() => handlePageChange(page - 1)} disabled={page === 1}>Previous</button>
+        <button   className='bg-blue-500 cursor-pointer p-2 rounded-md ml-2 mt-2 text-white' onClick={() => handlePageChange(page + 1)} disabled={page === totalPages}>Next</button>
+        <select value={limit} className='ml-2 mt-2' onChange={(e) => handleLimitChange(Number(e.target.value))}>
           <option value={5}>5</option>
           <option value={10}>10</option>
           {/* Add more options as needed */}
