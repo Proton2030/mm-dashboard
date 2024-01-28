@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const deleteUser = async (userObjectId:any) => {
   try {
-    const response = await axios.delete('http://65.1.183.77:8181/api/v1/user', {
+    const response = await axios.delete('http://65.1.183.77:8181/api/v1/user/delete-user', {
       data: {
         userObjectId: userObjectId,
       },
