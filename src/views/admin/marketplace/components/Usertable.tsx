@@ -18,7 +18,8 @@ function Usertable() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [totalPages, setTotalPages] = useState(500);
-  
+  const [searchCriteria, setSearchCriteria] = useState('full_name'); // Default search criteria
+
 
   const getuserDetails = useCallback(async () => {
     try {
@@ -85,7 +86,6 @@ function Usertable() {
     {
       field:"message_limit", headerName:"Message limit"
     }
-
   ]);
 
   const defaultColDef: ColDef = useMemo(() => ({
@@ -106,17 +106,11 @@ function Usertable() {
 
   const handleSearchClick = async () => {
     try {
-      let searchEndpoint;
-  
       if (searchTerm.trim() !== '') {
-        const searchTermEncoded = searchTerm.replace(/ /g, '');
-  
-        if (!isNaN(Number(searchTerm))) {
-          searchEndpoint = `http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${searchTermEncoded}`;
-        } else {
-          searchEndpoint = `http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?full_name=${searchTermEncoded}`;
-        }
-  
+        const searchTermEncoded = encodeURIComponent(searchTerm);
+
+        const searchEndpoint = `http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?${searchCriteria}=${searchTermEncoded}`;
+
         const response = await axios.get(searchEndpoint);
         setfilteredData(response.data.result);
       }
@@ -185,12 +179,17 @@ function Usertable() {
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
+        <select
+          value={searchCriteria}
+          onChange={e => setSearchCriteria(e.target.value)}
+          className='p-2 border-black border-2 rounded-xl mt-2 mb-3 ml-2'
+        >
+          <option value="full_name">Full Name</option>
+          <option value="mobile">Mobile</option>
+          <option value="age">Age</option>
+        </select>
         <button className='bg-blue-700 p-2 rounded-md ml-2 text-white' onClick={handleSearchClick}>Search</button>
         <button className='bg-blue-700 p-2 rounded-md ml-2 text-white' onClick={handleResetClick}>Reset</button>
-      </div>
-      <div className="download-btn flex justify-between items-center">
-        <button className='bg-green-500 p-2 rounded-md ml-2 mb-2 text-white' onClick={downloadCsv}>Download data</button>
-        <button className='bg-green-500 p-2 rounded-md ml-2 mb-2 text-white'>Create user</button>
       </div>
       <div className="ag-theme-alpine rounded-xl" style={{ height: 300, width: '100%' }}>
         <AgGridReact
@@ -207,7 +206,6 @@ function Usertable() {
         <select value={limit} className='ml-2 mt-2' onChange={(e) => handleLimitChange(Number(e.target.value))}>
           <option value={5}>5</option>
           <option value={10}>10</option>
-          {/* Add more options as needed */}
         </select>
       </div>
     </div>
