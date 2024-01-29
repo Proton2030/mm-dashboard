@@ -12,6 +12,7 @@ function Usertable() {
 
   
   const [searchTerm, setSearchTerm] = useState('');
+
   const [userlist, setuserlist] = useState([]);
   const [filteredData, setfilteredData] = useState([]);
   const [page, setPage] = useState(1);
@@ -95,6 +96,7 @@ function Usertable() {
     headerClass: "text-sm font-bold text-gray-600 dark:text-white border-b border-gray-200 "
   }), []);
 
+  
   const updateFilteredData = () => {
     const filtered = userlist.filter((item) =>
       Object.values(item).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase()))
@@ -102,9 +104,28 @@ function Usertable() {
     setfilteredData(filtered);
   };
 
-  const handleSearchClick = () => {
-    updateFilteredData();
+  const handleSearchClick = async () => {
+    try {
+      let searchEndpoint;
+  
+      if (searchTerm.trim() !== '') {
+        const searchTermEncoded = searchTerm.replace(/ /g, '');
+  
+        if (!isNaN(Number(searchTerm))) {
+          searchEndpoint = `http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${searchTermEncoded}`;
+        } else {
+          searchEndpoint = `http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?full_name=${searchTermEncoded}`;
+        }
+  
+        const response = await axios.get(searchEndpoint);
+        setfilteredData(response.data.result);
+      }
+    } catch (error) {
+      console.error('Error searching user', error);
+    }
   };
+  
+  
 
   const handleResetClick = () => {
     setSearchTerm('');
@@ -112,10 +133,13 @@ function Usertable() {
   };
 
   const handlePageChange = (newPage: any) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      setPage(newPage);
+    const parsedPage = Number(newPage); // Convert to number
+    if (!isNaN(parsedPage) && parsedPage > 0 && parsedPage <= totalPages) {
+      setPage(parsedPage);
     }
   };
+  
+  
 
   const handleLimitChange = (newLimit: any) => {
     setLimit(newLimit);
@@ -139,6 +163,7 @@ function Usertable() {
     const rows = filteredData.map((item) => Object.values(item).join(','));
     return `${headers}\n ${rows.join('\n')}`;
   };
+  
 
   useEffect(() => {
     getuserDetails();
