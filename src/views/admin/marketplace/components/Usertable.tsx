@@ -19,6 +19,7 @@ function Usertable() {
   const [searchCriteria, setSearchCriteria] = useState('full_name');
   const [copiedNumber, setCopiedNumber] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  // const [profileimgurl,setprofileimgurl]=useState('')
 
   const copyToClipboard = (number:any) => {
     navigator.clipboard.writeText(number);
@@ -85,6 +86,13 @@ function Usertable() {
   };
 
   const [colDefs, setColDefs] = useState([
+    {field:"profile image",
+    cellRenderer: (params: ICellRendererParams) => {
+      const imageUrl = params.data.profile_image_url; 
+      console.log(imageUrl)// Update with the actual field name for the profile image
+      return <img src={imageUrl} alt="Profile" className="rounded-full h-10 w-10" /> }
+    },
+
     { field: "full_name",headerName:"Name", filter: "agTextColumnFilter" },
   
     { field: "status",
