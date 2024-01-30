@@ -6,6 +6,11 @@ import { ColDef, ICellRendererParams } from 'ag-grid-community';
 import axios from 'axios';
 import { getuserData } from 'API/userdetails';
 import { deleteUser } from 'API/userdelete';
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+
+import { AdduserModal } from './AdduserModal';
+import Editpage from './editpage';
 
 
 function Usertable() {
@@ -17,8 +22,30 @@ function Usertable() {
   const [limit, setLimit] = useState(5);
   const [totalPages, setTotalPages] = useState(500);
   const [searchCriteria, setSearchCriteria] = useState('full_name');
+  const [edituserId, setEdituserId] = useState('');
   const [copiedNumber, setCopiedNumber] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+
+  let [isOpen, setIsOpen] = useState(false)
+  let [isOpensecondModel, setIsOpensecondModel] = useState(false)
+
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+
+  function closeModal2() {
+    setIsOpensecondModel(false)
+  }
+
+  function openModal2() {
+    setIsOpensecondModel(true)
+  }
+
 
   const copyToClipboard = (number:any) => {
     navigator.clipboard.writeText(number);
@@ -55,11 +82,12 @@ function Usertable() {
 
   const renderActionButtons = (params: ICellRendererParams) => {
     const userId = params.data._id;
+    setEdituserId(userId)
     const phoneNumber = params.data.mobile;
 
     return (
       <div className='flex items-center mt-1'>
-        <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800">
+        <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800" onClick={openModal2}>
           Edit
         </button>
         <button className="bg-gray-800 px-2 rounded-md ml-2 text-white" onClick={() => handleDeleteClick(userId)}>
@@ -76,6 +104,7 @@ function Usertable() {
             </button>
           </div>
         )}
+        
       </div>
     );
   };
@@ -98,16 +127,17 @@ function Usertable() {
         );
       }
     },
-    {field: "message_limit", headerName:"Message Limit"},
+    {field: "mobile", headerName:"Mobile Number"},
     { field: "gender",headerName:"Gender" },
+    {
+      field:"message_limit", headerName:"Message limit"
+    },
     { field: "updatedAt", headerName:"Last active time" },
     {
       field: "Action",
       cellRenderer: renderActionButtons,
     },
-    {
-      field:"message_limit", headerName:"Message limit"
-    }
+    
   ]);
 
   const defaultColDef: ColDef = useMemo(() => ({
@@ -139,8 +169,6 @@ function Usertable() {
       console.error('Error searching user', error);
     }
   };
-  
-  
 
   const handleResetClick = () => {
     setSearchTerm('');
@@ -148,7 +176,7 @@ function Usertable() {
   };
 
   const handlePageChange = (newPage: any) => {
-    const parsedPage = Number(newPage); // Convert to number
+    const parsedPage = Number(newPage); 
     if (!isNaN(parsedPage) && parsedPage > 0 && parsedPage <= totalPages) {
       setPage(parsedPage);
     }
@@ -209,6 +237,7 @@ function Usertable() {
         </select>
         <button className='bg-blue-700 p-2 rounded-md ml-2 text-white' onClick={handleSearchClick}>Search</button>
         <button className='bg-blue-700 p-2 rounded-md ml-2 text-white' onClick={handleResetClick}>Reset</button>
+        <button className='bg-blue-700 p-2 rounded-md ml-2 text-white' onClick={openModal}>Add user</button>
       </div>
       <div className="ag-theme-alpine rounded-xl" style={{ height: 300, width: '100%' }}>
         <AgGridReact
@@ -227,6 +256,78 @@ function Usertable() {
           <option value={10}>10</option>
         </select>
       </div>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full h-screen overflow-y-auto max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <>
+                  </>
+                 <AdduserModal/>
+                 <div className=" bg-gray-200 rounded-full" onClick={closeModal}>X &nbsp;close</div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+      <Transition appear show={isOpensecondModel} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal2}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full h-screen overflow-y-auto max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <>
+                  </>
+                 <Editpage userObjectId={edituserId}/>
+                 <div className="hover bg-gray-200 rounded-full" onClick={closeModal2}>X &nbsp;close</div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
     </div>
   );
 }

@@ -65,7 +65,7 @@ export const AdduserModal = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8989/api/v1/auth/signup', userData);
+      const response = await axios.post('http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/auth/signup', userData);
       console.log('User signed up successfully:', response.data);
     } catch (error) {
       console.error('Error signing up user:', error);
@@ -74,7 +74,7 @@ export const AdduserModal = () => {
 
   return (
     <div>
-      <h2>Add User</h2>
+        <h2 className='text-4xl pt-32 mt-5 font-semibold text-gray-800'>Add User</h2>
       <form className='w-full md:w-1/2 lg:w-1/3 p-4' onSubmit={handleSubmit}>
        <div className="flex flex-wrap">
  <label htmlFor="full_name" className="block mb-2 w-full md:w-1/4">Full Name:</label>
@@ -86,7 +86,6 @@ export const AdduserModal = () => {
  <div className="flex flex-wrap">
      <label htmlFor="mobile"className="block mb-2 w-full md:w-1/4">Mobile:</label>
      <input className="relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block w-64 p-2.5 checked:bg-emerald-500 my-3 mx-5"type="text" id="mobile" name="mobile"  onChange={handleChange}/></div>
-
    <div className="flex flex-wrap">  <label htmlFor="password"className="block mb-2 w-full md:w-1/4">Password:</label>
      <input className="relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block w-64 p-2.5 checked:bg-emerald-500 my-3 mx-5" type="password" id="password" name="password"  onChange={handleChange}/></div>
  <div className="flex flex-wrap">
@@ -235,8 +234,8 @@ export const AdduserModal = () => {
      <label htmlFor="message_limit">Message Limit:</label>
      <input className="relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block w-64 p-2.5 checked:bg-emerald-500 my-3 mx-5"type="number" id="message_limit" name="message_limit"  onChange={handleChange}/>
  </div>
-    
-        <input className="relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block w-64 p-2.5 checked:bg-emerald-500 my-3 mx-5"type="submit" value="Submit" />
+<input className="w-56 h-16 mt-10 rounded-full bg-gray-900 text-white"type="submit" value="Submit" />
+
       </form>
     </div>
   );

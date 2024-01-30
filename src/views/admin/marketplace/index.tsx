@@ -13,9 +13,9 @@ const Marketplace = () => {
 
 {/* Ag grid table start here */}
 
-{/* <Usertable/> */}
+<Usertable/>
 {/* <Editpage/> */}
-<AdduserModal/>
+{/* <AdduserModal/> */}
 
 </div>
 
