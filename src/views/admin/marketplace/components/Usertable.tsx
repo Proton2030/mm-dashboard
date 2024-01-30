@@ -25,6 +25,7 @@ function Usertable() {
   const [edituserId, setEdituserId] = useState('');
   const [copiedNumber, setCopiedNumber] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  // const [profileimgurl,setprofileimgurl]=useState('')
 
   let [isOpen, setIsOpen] = useState(false)
   let [isOpensecondModel, setIsOpensecondModel] = useState(false)
@@ -114,6 +115,13 @@ function Usertable() {
   };
 
   const [colDefs, setColDefs] = useState([
+    {field:"profile image",
+    cellRenderer: (params: ICellRendererParams) => {
+      const imageUrl = params.data.profile_image_url; 
+      console.log(imageUrl)// Update with the actual field name for the profile image
+      return <img src={imageUrl} alt="Profile" className="rounded-full h-10 w-10" /> }
+    },
+
     { field: "full_name",headerName:"Name", filter: "agTextColumnFilter" },
   
     { field: "status",
