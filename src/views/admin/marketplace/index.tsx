@@ -1,6 +1,7 @@
 import React from 'react'
 import Usertable from './components/Usertable';
 import Editpage from './components/editpage';
+import { AdduserModal } from './components/AdduserModal';
 
 const Marketplace = () => {
 
@@ -13,7 +14,8 @@ const Marketplace = () => {
 {/* Ag grid table start here */}
 
 {/* <Usertable/> */}
-<Editpage/>
+{/* <Editpage/> */}
+<AdduserModal/>
 
 </div>
 
