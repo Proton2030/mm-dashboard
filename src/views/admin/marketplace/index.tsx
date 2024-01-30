@@ -1,5 +1,6 @@
 import React from 'react'
 import Usertable from './components/Usertable';
+import Editpage from './components/editpage';
 
 const Marketplace = () => {
 
@@ -11,7 +12,8 @@ const Marketplace = () => {
 
 {/* Ag grid table start here */}
 
-<Usertable/>
+{/* <Usertable/> */}
+<Editpage/>
 
 </div>
 
