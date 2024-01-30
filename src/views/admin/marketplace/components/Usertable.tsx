@@ -10,17 +10,26 @@ import { deleteUser } from 'API/userdelete';
 
 function Usertable() {
 
-  
   const [searchTerm, setSearchTerm] = useState('');
-
   const [userlist, setuserlist] = useState([]);
   const [filteredData, setfilteredData] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [totalPages, setTotalPages] = useState(500);
-  const [searchCriteria, setSearchCriteria] = useState('full_name'); // Default search criteria
+  const [searchCriteria, setSearchCriteria] = useState('full_name');
+  const [copiedNumber, setCopiedNumber] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
+  const copyToClipboard = (number:any) => {
+    navigator.clipboard.writeText(number);
+    setCopiedNumber(number);
+    setShowAlert(true);
+  };
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
 
+  
   const getuserDetails = useCallback(async () => {
     try {
       // const response = await axios.get(`http://65.1.183.77:8181/api/v1/user/get-all-user-suggestion?page=${page}&limit=${limit}`);
@@ -45,15 +54,28 @@ function Usertable() {
   
 
   const renderActionButtons = (params: ICellRendererParams) => {
-    const userId = params.data._id; 
+    const userId = params.data._id;
+    const phoneNumber = params.data.mobile;
+
     return (
-      <div className='flex items-center mt-1 '>
-        <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800" >
+      <div className='flex items-center mt-1'>
+        <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800">
           Edit
         </button>
-        <button className="bg-gray-800 px-2 rounded-md ml-2 text-white " onClick={() => handleDeleteClick(userId)} >
+        <button className="bg-gray-800 px-2 rounded-md ml-2 text-white" onClick={() => handleDeleteClick(userId)}>
           Delete
         </button>
+        <button className="bg-blue-500 px-2 rounded-md ml-2 text-white" onClick={() => copyToClipboard(phoneNumber)}>
+          Copy phno.
+        </button>
+        {showAlert && (
+          <div className="absolute top-0 right-0 m-2 p-2 bg-green-400 text-white rounded-md">
+            Copied: {copiedNumber}
+            <button className="ml-2" onClick={closeAlert}>
+              X
+            </button>
+          </div>
+        )}
       </div>
     );
   };
@@ -96,7 +118,6 @@ function Usertable() {
     headerClass: "text-sm font-bold text-gray-600 dark:text-white border-b border-gray-200 "
   }), []);
 
-  
   const updateFilteredData = () => {
     const filtered = userlist.filter((item) =>
       Object.values(item).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase()))
@@ -133,8 +154,6 @@ function Usertable() {
     }
   };
   
-  
-
   const handleLimitChange = (newLimit: any) => {
     setLimit(newLimit);
     setPage(1);
