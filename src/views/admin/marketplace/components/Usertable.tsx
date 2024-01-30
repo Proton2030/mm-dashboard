@@ -86,7 +86,7 @@ function Usertable() {
 
   const [colDefs, setColDefs] = useState([
     { field: "full_name",headerName:"Name", filter: "agTextColumnFilter" },
-    { field: "mobile", headerName:"Mobile no" },
+  
     { field: "status",
       cellRenderer: (params: ICellRendererParams) => {
         const activetext = params.value==="ACTIVE" ? "Active" : "Nonactive";
