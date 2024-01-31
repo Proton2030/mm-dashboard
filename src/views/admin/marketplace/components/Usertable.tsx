@@ -95,17 +95,17 @@ const [selectedUserDetails, setSelectedUserDetails] = useState(null);
         <button className="bg-gray-800 px-2 rounded-md ml-2 text-white" onClick={() => handleDeleteClick(userId)}>
           Delete
         </button>
-        <button className="bg-blue-500 px-2 rounded-md ml-2 text-white" onClick={() => copyToClipboard(phoneNumber)}>
+        <a href={`tel:${phoneNumber}`}className="bg-blue-500 px-2 rounded-md ml-2 text-white" >
           Copy phno.
-        </button>
-        {showAlert && (
+        </a>
+        {/* {showAlert && (
           <div className="absolute top-0 right-0 m-2 p-2 bg-green-400 text-white rounded-md">
             Copied: {copiedNumber}
             <button className="ml-2" onClick={closeAlert}>
               X
             </button>
           </div>
-        )}
+        )} */}
         
       </div>
     );
