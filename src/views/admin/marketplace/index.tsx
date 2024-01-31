@@ -11,12 +11,7 @@ const Marketplace = () => {
   return (  
 <div>
 
-{/* Ag grid table start here */}
-
 <Usertable/>
-{/* <Editpage/> */}
-{/* <AdduserModal/> */}
-
 </div>
 
     

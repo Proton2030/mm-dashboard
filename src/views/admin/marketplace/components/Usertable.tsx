@@ -25,7 +25,7 @@ function Usertable() {
   const [edituserId, setEdituserId] = useState('');
   const [copiedNumber, setCopiedNumber] = useState('');
   const [showAlert, setShowAlert] = useState(false);
-  // const [profileimgurl,setprofileimgurl]=useState('')
+const [selectedUserDetails, setSelectedUserDetails] = useState(null);
 
   let [isOpen, setIsOpen] = useState(false)
   let [isOpensecondModel, setIsOpensecondModel] = useState(false)
@@ -85,10 +85,11 @@ function Usertable() {
     const userId = params.data._id;
     setEdituserId(userId)
     const phoneNumber = params.data.mobile;
+    // setSelectedUserDetails(params.data)
 
     return (
       <div className='flex items-center mt-1'>
-        <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800" onClick={openModal2}>
+        <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800" onClick={() => handleEditClick(phoneNumber)}>
           Edit
         </button>
         <button className="bg-gray-800 px-2 rounded-md ml-2 text-white" onClick={() => handleDeleteClick(userId)}>
@@ -178,6 +179,18 @@ function Usertable() {
     }
   };
 
+  const handleEditClick = async (phoneNumber: string) => {
+    try {
+      const response = await axios.get(`http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${phoneNumber}`); // Replace with the actual API endpoint to fetch user details
+      setSelectedUserDetails(response.data.result[0]);
+      console.log("------------->");
+      
+      openModal2();
+    } catch (error) {
+      console.error('Error fetching user details', error);
+    }
+  };
+    
   const handleResetClick = () => {
     setSearchTerm('');
     updateFilteredData();
@@ -328,7 +341,8 @@ function Usertable() {
                 <Dialog.Panel className="w-full h-screen overflow-y-auto max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <>
                   </>
-                 <Editpage userObjectId={edituserId}/>
+                  <Editpage userObjectId={edituserId} userDetails={selectedUserDetails} />
+
                  <div className="hover bg-gray-200 rounded-full" onClick={closeModal2}>X &nbsp;close</div>
                 </Dialog.Panel>
               </Transition.Child>
