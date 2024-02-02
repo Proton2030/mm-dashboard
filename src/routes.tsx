@@ -18,6 +18,7 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+import Tabs from "layouts/tabs/Tabs";
 
 const routes = [
   {
@@ -35,6 +36,8 @@ const routes = [
     component: <NFTMarketplace />,
     secondary: true,
   },
+  
+  
   {
     name: "Data Tables",
     layout: "/admin",
@@ -50,11 +53,11 @@ const routes = [
     component: <Profile />,
   },
   {
-    name: "Sign In",
-    layout: "/auth",
-    path: "sign-in",
+    name: "user Details",
+    layout: "/tab-test",
+    path: "tab-test",
     icon: <MdLock className="h-6 w-6" />,
-    component: <SignIn />,
+    component: <Tabs />,
   },
   {
     name: "RTL Admin",
@@ -63,5 +66,6 @@ const routes = [
     icon: <MdHome className="h-6 w-6" />,
     component: <RTLDefault />,
   },
+  
 ];
 export default routes;
