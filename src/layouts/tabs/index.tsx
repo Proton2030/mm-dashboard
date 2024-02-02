@@ -10,7 +10,7 @@ const Tabs = () => {
               href="#"
               className="border-transparent inline-block rounded-t-lg border-b-2 p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
             >
-              Profile
+              Personal Information
             </a>
           </li>
           <li className="me-2">
@@ -19,7 +19,7 @@ const Tabs = () => {
               className="active inline-block rounded-t-lg border-b-2 border-blue-600 p-4 text-blue-600 dark:border-blue-500 dark:text-blue-500"
               aria-current="page"
             >
-              Dashboard
+              Job Information
             </a>
           </li>
           <li className="me-2">
@@ -27,7 +27,7 @@ const Tabs = () => {
               href="#"
               className="border-transparent inline-block rounded-t-lg border-b-2 p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
             >
-              Settings
+              Education
             </a>
           </li>
           <li className="me-2">
@@ -35,12 +35,12 @@ const Tabs = () => {
               href="#"
               className="border-transparent inline-block rounded-t-lg border-b-2 p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
             >
-              Contacts
+              Religious Information
             </a>
           </li>
           <li>
             <a className="inline-block cursor-not-allowed rounded-t-lg p-4 text-gray-400 dark:text-gray-500">
-              Disabled
+              
             </a>
           </li>
         </ul>
