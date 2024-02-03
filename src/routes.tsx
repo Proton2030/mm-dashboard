@@ -19,8 +19,6 @@ import {
   MdLock,
 } from "react-icons/md";
 import Tabs from "layouts/tabs";
-import Index from "layouts/xyz";
-import Try from "layouts/xyz";
 
 const routes = [
   {
@@ -68,13 +66,7 @@ const routes = [
     icon: <MdHome className="h-6 w-6" />,
     component: <RTLDefault />,
   },
-  {
-    name: "abc",
-    layout: "/admin",
-    path: "xyz",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <Try />,
-  },
+  
   
 ];
 export default routes;

@@ -38,11 +38,6 @@ const Tabs = () => {
               Religious Information
             </a>
           </li>
-          <li>
-            <a className="inline-block cursor-not-allowed rounded-t-lg p-4 text-gray-400 dark:text-gray-500">
-              
-            </a>
-          </li>
         </ul>
       </div>
     </div>

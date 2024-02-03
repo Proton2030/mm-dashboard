@@ -4,8 +4,11 @@ import RtlLayout from "layouts/rtl";
 import AdminLayout from "layouts/admin";
 import AuthLayout from "layouts/auth";
 import Tabs from "layouts/tabs";
-import Index from "layouts/xyz";
-import Try from "layouts/xyz";
+import JobInfo from "layouts/jobinfo";
+import EducationInfo from "layouts/education";
+import ReligiousInfo from "layouts/religiousinfo";
+import PersonalInfo from "layouts/personalinfo";
+
 const App = () => {
   return (
     <Routes>
@@ -14,9 +17,13 @@ const App = () => {
       <Route path="rtl/*" element={<RtlLayout />} />
       <Route path="/" element={<Navigate to="/admin" replace />} />
       <Route path="tabs" element={<Tabs />} />
-      <Route path="xyz" element={<Try />} />
+      <Route path="personalinfo" element={<PersonalInfo />} />
+      <Route path="jobinfo" element={<JobInfo />} />
+      <Route path="education" element={<EducationInfo />} />
+      <Route path="religiousinfo" element={<ReligiousInfo />} />
     </Routes>
+    
   );
 };
 
-export default App;
+export default App
