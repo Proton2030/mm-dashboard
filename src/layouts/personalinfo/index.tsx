@@ -24,7 +24,7 @@ const PersonalInfo = () => {
             <label className="mx-3 mb-3 block text-base font-medium text-gray-900 dark:text-white">
               Select Your Gender:
             </label>
-            <select>
+            <select className="mx-3">
               <option value="">Female</option>
               <option value="">Male</option>
             </select>

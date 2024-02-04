@@ -8,6 +8,7 @@ import JobInfo from "layouts/jobinfo";
 import EducationInfo from "layouts/education";
 import ReligiousInfo from "layouts/religiousinfo";
 import PersonalInfo from "layouts/personalinfo";
+import FamilyInfo from "layouts/familyinfo";
 
 const App = () => {
   return (
@@ -21,6 +22,9 @@ const App = () => {
       <Route path="jobinfo" element={<JobInfo />} />
       <Route path="education" element={<EducationInfo />} />
       <Route path="religiousinfo" element={<ReligiousInfo />} />
+      <Route path="familyinfo" element={<FamilyInfo/>} />
+      
+      
     </Routes>
     
   );
