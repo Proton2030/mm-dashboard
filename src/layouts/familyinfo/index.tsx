@@ -15,6 +15,7 @@ const FamilyInfo = () => {
             <input
               type="text"
               id="fathers_name"
+              name="fathers_name"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Fathers Name"
               required
@@ -30,6 +31,7 @@ const FamilyInfo = () => {
             <input
               type="text"
               id="fathers_occupation"
+              name="fathers_occupation"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Fathers occupation"
               required
@@ -45,6 +47,7 @@ const FamilyInfo = () => {
             <input
               type="text"
               id="mothers_name"
+              name="mothers_name"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Mothers Name"
               required
@@ -60,6 +63,7 @@ const FamilyInfo = () => {
             <input
               type="text"
               id="mothers_occupation"
+              name="mothers_occupation"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Mothers occupation"
               required
@@ -75,6 +79,7 @@ const FamilyInfo = () => {
             <input
               type="number"
               id="no_of_brothers"
+              name="no_of_brothers"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder=""
               required
@@ -90,6 +95,7 @@ const FamilyInfo = () => {
             <input
               type="number"
               id="no_of_sisters"
+              name="no_of_sisters"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder=""
               required
@@ -104,6 +110,7 @@ const FamilyInfo = () => {
             Financial Condition:
           </label>
           <select
+            name="financial_condition"
             className="mx-3  block w-auto rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             required
           >

@@ -15,6 +15,7 @@ const PersonalInfo = () => {
             <input
               type="text"
               id="full_name"
+              name="full_name"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Full Name"
               required
@@ -24,7 +25,7 @@ const PersonalInfo = () => {
             <label className="mx-3 mb-3 block text-base font-medium text-gray-900 dark:text-white">
               Select Your Gender:
             </label>
-            <select className="mx-3">
+            <select className="mx-3"name="gender">
               <option value="">Female</option>
               <option value="">Male</option>
             </select>
@@ -39,6 +40,7 @@ const PersonalInfo = () => {
             <input
               type="number"
               id="age"
+              name="age"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Your age"
               required
@@ -52,9 +54,14 @@ const PersonalInfo = () => {
               Marital Status:
             </label>
             <select
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-              required
-            />
+              name="marital_status"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              required>
+                <option value="">MARRIED</option>
+                <option value="">UNMARRIED</option>
+                <option value="">DIVORCED</option>
+              </select>
+            
           </div>
           <div>
             <label
@@ -65,6 +72,7 @@ const PersonalInfo = () => {
             </label>
             <select
               id="district"
+              name="district"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               required
             >
@@ -84,6 +92,7 @@ const PersonalInfo = () => {
             <input
               type="number"
               id="height"
+              name="height"
               className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter your height"
               required
@@ -100,6 +109,7 @@ const PersonalInfo = () => {
           <input
             type="number"
             id="weight"
+            name="weight"
             className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="Enter Your weight"
             required
@@ -115,6 +125,7 @@ const PersonalInfo = () => {
           <input
             type="text"
             id="body_color"
+            name="body_color"
             className="mx-3 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="Enter Body color"
             required

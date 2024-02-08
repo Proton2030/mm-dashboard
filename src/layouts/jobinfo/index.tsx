@@ -15,6 +15,7 @@ const JobInfo = () => {
             <input
               type="text"
               id="occupation"
+              name="occupation"
               className="mx-3 my-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Occupation"
               required
@@ -30,6 +31,7 @@ const JobInfo = () => {
             <input
               type="text"
               id="workplace"
+              name="work_place"
               className="mx-3 my-1 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Enter Your Workplace"
               required
@@ -45,6 +47,7 @@ const JobInfo = () => {
             <input
               type="number"
               id="income"
+              name="monthly_income"
               className="mx-3 my-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Your Monthly Income"
               required
