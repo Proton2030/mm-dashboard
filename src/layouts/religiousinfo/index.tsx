@@ -1,6 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const ReligiousInfo = () => {
+const ReligiousInfo = ({ user }: any) => {
+  const [religiousData, setReligiousData] = useState({
+    salah: false,
+    sawum: false,
+  });
+
+ 
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setReligiousData((prevData) => ({
+      ...prevData,
+      [name]: checked,
+    }));
+  };
+
+  useEffect(() => {
+    if (user) {
+      setReligiousData({
+        salah: user?.salah,
+        sawum: user?.sawum,
+      
+      });
+    }
+  }, [user]);
+
   return (
     <div>
       <h3 className="mx-3 my-3 font-medium text-gray-900 dark:text-white">
@@ -13,7 +39,8 @@ const ReligiousInfo = () => {
               id="check_salah"
               type="checkbox"
               name="salah"
-              value=""
+              checked={religiousData.salah}
+              onChange={handleCheckboxChange}
               className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-700"
             />
             <label
@@ -30,7 +57,8 @@ const ReligiousInfo = () => {
               id="check_sawum"
               type="checkbox"
               name="sawum"
-              value=""
+              checked={religiousData.sawum}
+              onChange={handleCheckboxChange}
               className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-700"
             />
             <label

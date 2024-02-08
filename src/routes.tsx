@@ -19,6 +19,7 @@ import {
   MdLock,
 } from "react-icons/md";
 import Tabs from "layouts/tabs";
+import Usertable from "views/admin/marketplace/components/Usertable";
 
 const routes = [
   {
@@ -33,7 +34,7 @@ const routes = [
     layout: "/admin",
     path: "nft-marketplace",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
+    component: <Usertable/>,
     secondary: true,
   },
   
@@ -45,27 +46,15 @@ const routes = [
     path: "data-tables",
     component: <DataTables />,
   },
-  {
-    name: "Profile",
-    layout: "/admin",
-    path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
-  },
+
   {
     name: "user Details",
     layout: "/admin",
-    path: "tabs",
-    icon: <MdLock className="h-6 w-6" />,
+    path: "tabs/:ph",
+    icon: <MdPerson className="h-6 w-6" />,
     component: <Tabs />,
   },
-  {
-    name: "RTL Admin",
-    layout: "/admin",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
-  },
+
   
   
 ];

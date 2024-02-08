@@ -11,10 +11,11 @@ import { Fragment } from 'react'
 
 import { AdduserModal } from './AdduserModal';
 import Editpage from './editpage';
+import { useNavigate } from 'react-router-dom';
 
 
 function Usertable() {
-
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [userlist, setuserlist] = useState([]);
   const [filteredData, setfilteredData] = useState([]);
@@ -92,21 +93,12 @@ const [selectedUserDetails, setSelectedUserDetails] = useState(null);
         <button className="bg-yellow-300 px-2 rounded-md ml-2 text-gray-800" onClick={() => handleEditClick(phoneNumber)}>
           Edit
         </button>
-        <button className="bg-gray-800 px-2 rounded-md ml-2 text-white" onClick={() => handleDeleteClick(userId)}>
+        {/* <button className="bg-gray-800 px-2 rounded-md ml-2 text-white" onClick={() => handleDeleteClick(userId)}>
           Delete
-        </button>
+        </button> */}
         <a href={`tel:${phoneNumber}`}className="bg-blue-500 px-2 rounded-md ml-2 text-white" >
           Copy phno.
         </a>
-        {/* {showAlert && (
-          <div className="absolute top-0 right-0 m-2 p-2 bg-green-400 text-white rounded-md">
-            Copied: {copiedNumber}
-            <button className="ml-2" onClick={closeAlert}>
-              X
-            </button>
-          </div>
-        )} */}
-        
       </div>
     );
   };
@@ -181,11 +173,11 @@ const [selectedUserDetails, setSelectedUserDetails] = useState(null);
 
   const handleEditClick = async (phoneNumber: string) => {
     try {
-      const response = await axios.get(`http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${phoneNumber}`); // Replace with the actual API endpoint to fetch user details
-      setSelectedUserDetails(response.data.result[0]);
-      console.log("------------->");
-      
-      openModal2();
+      // const response = await axios.get(`http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${phoneNumber}`); // Replace with the actual API endpoint to fetch user details
+      // setSelectedUserDetails(response.data.result[0]);
+      // console.log("------------->");
+      navigate(`/admin/tabs/${phoneNumber}`);
+      // openModal2();
     } catch (error) {
       console.error('Error fetching user details', error);
     }
