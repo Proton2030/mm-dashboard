@@ -37,9 +37,7 @@ const Sidebar = (props: {
       </ul>
 
       {/* Free mm Card */}
-      <div className="flex justify-center">
-        <SidebarCard />
-      </div>
+     
 
       {/* Nav item end */}
     </div>

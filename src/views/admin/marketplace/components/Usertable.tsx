@@ -9,11 +9,17 @@ import { deleteUser } from "API/userdelete";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-import { AdduserModal } from "./AdduserModal";
-import Editpage from "./editpage";
+import { AdduserModal } from './AdduserModal';
+import Editpage from './editpage';
+import { useNavigate } from 'react-router-dom';
+import { MdEdit } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+import { IoTrashOutline } from "react-icons/io5";
+
 
 function Usertable() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
   const [userlist, setuserlist] = useState([]);
   const [filteredData, setfilteredData] = useState([]);
   const [page, setPage] = useState(1);
@@ -83,62 +89,27 @@ function Usertable() {
     return (
       <div className="mt-1 flex items-center">
         <button
-          className="ml-2 w-20 rounded-md bg-white text-sm text-blue-900"
+          className="ml-2 px-2 py-2 rounded-md bg-gray-300 text-sm text-blue-900"
           onClick={() => handleEditClick(phoneNumber)}
         >
-          <svg
-            className="mx-1 text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-width="2"
-              d="M21 12c0 1.2-4 6-9 6s-9-4.8-9-6c0-1.2 4-6 9-6s9 4.8 9 6Z"
-            />
-            <path
-              stroke="currentColor"
-              stroke-width="2"
-              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-            />
-          </svg>
-          View
+         
+         <FaEye />
         </button>
 
         <button
-          className="text-sm w-2/3 ml-2 rounded-md bg-blue-600 px-2 text-white"
+          className="text-sm w-2/3 ml-2 rounded-md bg-blue-600 px-2 py-2 text-white"
           onClick={() => handleEditClick(phoneNumber)}
         >
-          <svg
-            className="h-[20px] w-[20px] ml-1 text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="white"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.3 6.2H5a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h11c1.1 0 2-1 2-2.1V11l-4 4.2c-.3.3-.7.6-1.2.7l-2.7.6c-1.7.3-3.3-1.3-3-3.1l.6-2.9c.1-.5.4-1 .7-1.3l3-3.1Z"
-              clip-rule="evenodd"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M19.8 4.3a2.1 2.1 0 0 0-1-1.1 2 2 0 0 0-2.2.4l-.6.6 2.9 3 .5-.6a2.1 2.1 0 0 0 .6-1.5c0-.2 0-.5-.2-.8Zm-2.4 4.4-2.8-3-4.8 5-.1.3-.7 3c0 .3.3.7.6.6l2.7-.6.3-.1 4.7-5Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          Edit
+          
+          <MdEdit />
         </button>
         <button
-          className="text-sm ml-2 rounded-md bg-red-600 px-2 text-white"
+          className="text-sm ml-2 rounded-md bg-red-600 px-2 py-2 text-white"
           onClick={() => handleDeleteClick(userId)}
         >
-          <svg className="w-[20px] h-[20px] ml-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
-        <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-      </svg>
-          Delete
+          
+          <IoTrashOutline />
+        
         </button>
         <a
           href={`tel:${phoneNumber}`}
@@ -246,13 +217,11 @@ function Usertable() {
 
   const handleEditClick = async (phoneNumber: string) => {
     try {
-      const response = await axios.get(
-        `http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${phoneNumber}`
-      ); // Replace with the actual API endpoint to fetch user details
-      setSelectedUserDetails(response.data.result[0]);
-      console.log("------------->");
-
-      openModal2();
+      // const response = await axios.get(`http://ec2-65-1-183-77.ap-south-1.compute.amazonaws.com:8181/api/v1/user/search-user-admin?mobile=${phoneNumber}`); // Replace with the actual API endpoint to fetch user details
+      // setSelectedUserDetails(response.data.result[0]);
+      // console.log("------------->");
+      navigate(`/admin/tabs/${phoneNumber}`);
+      // openModal2();
     } catch (error) {
       console.error("Error fetching user details", error);
     }
