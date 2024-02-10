@@ -46,6 +46,30 @@ const Tabs = () => {
               Family Information
             </a>
           </li>
+          <li className="me-2">
+            <a
+              href="#"
+              className="border-transparent inline-block rounded-t-lg border-b-2 p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              Choice List
+            </a>
+          </li>
+          <li className="me-2">
+            <a
+              href="#"
+              className="border-transparent inline-block rounded-t-lg border-b-2 p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              Choose List
+            </a>
+          </li>
+          <li className="me-2">
+            <a
+              href="#"
+              className="border-transparent inline-block rounded-t-lg border-b-2 p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              Chat List
+            </a>
+          </li>
         </ul>
       </div>
     </div>
