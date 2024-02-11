@@ -159,11 +159,7 @@ export const barChartDataWeeklyRevenue = [
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#4318FF",
   },
-  {
-    name: "PRODUCT C",
-    data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
-    color: "#EFF4FB",
-  },
+ 
 ];
 
 export const barChartOptionsWeeklyRevenue = {
