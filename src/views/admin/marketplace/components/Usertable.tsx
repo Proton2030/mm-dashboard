@@ -62,7 +62,7 @@ function Usertable() {
 
   const getuserDetails = useCallback(async () => {
     try {
-      // const response = await axios.get(`http://65.1.183.77:8181/api/v1/user/get-all-user-suggestion?page=${page}&limit=${limit}`);
+      // const response = await axios.get(`http://65.1.183.77:8989/api/v1/user/get-all-user-suggestion?page=${page}&limit=${limit}`);
       const response = await getuserData({ page, limit });
       setuserlist(response.data.result); // Extract data array from the response
       // setTotalPages(Math.ceil(response.data.total / limit));
